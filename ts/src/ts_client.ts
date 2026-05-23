@@ -14,10 +14,10 @@ export async function generateTSClient(
             await ensureDir(apiPath);
         }
 
-        await copy(`./templates/common.ts`, `${apiPath}/common.ts`, { overwrite: true });
+        await copy(`./src/templates/common.ts`, `${apiPath}/common.ts`, { overwrite: true });
 
         await generateResources(apiPath, apiDefinition.resources);
-        await copy(`./templates/api_index.ts`, `${apiPath}/index.ts`, { overwrite: true });
+        await copy(`./src/templates/api_index.ts`, `${apiPath}/index.ts`, { overwrite: true });
 
         await generateHttpClient(api, apiPath, apiDefinition.procedures);
         await generateWSClient(api, apiPath, apiDefinition.procedures);
