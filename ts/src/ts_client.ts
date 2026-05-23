@@ -8,12 +8,10 @@ export async function generateTSClient(
 ) {
     const currentDir = import.meta.url;
     const currentDir1 = import.meta.dirname;
-    const currentDir2 = __dirname;
 
     console.log(`currentDir`)
     console.log(currentDir)
     console.log(currentDir1)
-    console.log(currentDir2)
 
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
         const apiSlug = api.replaceAll('\\', '_').replaceAll('/', '_');
