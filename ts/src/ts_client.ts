@@ -6,7 +6,7 @@ export async function generateTSClient(
     definition: APIDefinition,
     path: string,
 ) {
-    const currentDir = import.meta.dirname;
+    const currentDir = __dirname;
 
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
         const apiSlug = api.replaceAll('\\', '_').replaceAll('/', '_');

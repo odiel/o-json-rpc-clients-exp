@@ -1,6 +1,6 @@
 {
     "name": "@o-json-rpc/o-json-rpc-clients",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "license": "MIT",
     "exports": "./src/index.ts",
     "tasks": {
