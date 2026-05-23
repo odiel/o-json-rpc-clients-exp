@@ -1,3 +1,5 @@
+import {fetchHTTPClientFileContent} from "../utils.ts";
+
 export async function generateHttpClient(
     api: string,
     apiPath: string,
@@ -6,8 +8,7 @@ export async function generateHttpClient(
         output?: string;
     }>,
 ) {
-    const currentDir = import.meta.dirname;
-    let templateFile = await Deno.readTextFile(`${currentDir}/../templates/api_http_client.ts`);
+    let templateFile = await fetchHTTPClientFileContent();
     let proceduresCode = '';
 
     for (const [name, options] of Object.entries(procedures)) {

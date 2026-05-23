@@ -1,3 +1,5 @@
+import {fetchWSClientFileContent} from "../utils.ts";
+
 export async function generateWSClient(
     api: string,
     apiPath: string,
@@ -6,8 +8,7 @@ export async function generateWSClient(
         output?: string;
     }>,
 ) {
-    const currentDir = import.meta.dirname;
-    let templateFile = await Deno.readTextFile(`${currentDir}/../templates/api_ws_client.ts`);
+    let templateFile = await fetchWSClientFileContent();
     let proceduresCode = '';
 
     for (const [name, options] of Object.entries(procedures)) {

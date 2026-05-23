@@ -1,6 +1,6 @@
 {
     "name": "@o-json-rpc/o-json-rpc-clients",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "license": "MIT",
     "exports": "./src/index.ts",
     "tasks": {
@@ -9,6 +9,7 @@
         "f": "deno fmt",
         "fl": "deno fmt && deno lint"
     },
+    "exclude": ["./src/templates"],
     "imports": {
         "@std/fs": "jsr:@std/fs@^1.0.19",
         "@std/path": "jsr:@std/path@^1.1.4",

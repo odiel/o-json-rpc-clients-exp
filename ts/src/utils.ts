@@ -90,3 +90,23 @@ export async function fetchIndexFileContent(): Promise<string> {
 
     return await response.text();
 }
+
+export async function fetchHTTPClientFileContent(): Promise<string> {
+    const url = new URL("./templates/api_http_client.ts", import.meta.url);
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Unable to load ${url.toString()} content.`);
+    }
+
+    return await response.text();
+}
+
+export async function fetchWSClientFileContent(): Promise<string> {
+    const url = new URL("./templates/api_ws_client.ts", import.meta.url);
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Unable to load ${url.toString()} content.`);
+    }
+
+    return await response.text();
+}
