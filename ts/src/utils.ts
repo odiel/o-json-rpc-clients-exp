@@ -71,10 +71,22 @@ export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
     return 'unknown';
 }
 
-export function getCurrentDirname(metaUrl: string): string {
-    if (metaUrl.startsWith("file://")) {
-        return dirname(fromFileUrl(metaUrl));
+export async function fetchCommonFileContent(): Promise<string> {
+    const url = new URL("./templates/common.ts", import.meta.url);
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Unable to load ${url.toString()} content.`);
     }
 
-    return new URL(".", metaUrl).pathname;
+    return await response.text();
+}
+
+export async function fetchIndexFileContent(): Promise<string> {
+    const url = new URL("./templates/api_index.ts", import.meta.url);
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Unable to load ${url.toString()} content.`);
+    }
+
+    return await response.text();
 }
