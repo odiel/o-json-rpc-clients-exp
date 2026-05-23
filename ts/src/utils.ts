@@ -1,5 +1,4 @@
 import type { JSONSchema } from '@o-json-rpc/o-json-rpc-ts';
-import { fromFileUrl, dirname } from "@std/path";
 
 export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
     if (schema.type === 'null') {
@@ -72,37 +71,26 @@ export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
 }
 
 export async function fetchCommonFileContent(): Promise<string> {
-    const url = new URL("./templates/common.ts", import.meta.url);
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`Unable to load ${url.toString()} content.`);
-    }
-
-    return await response.text();
+    const url = new URL('../templates/common.ts', import.meta.url);
+    return await fetchFileContent(url)
 }
 
 export async function fetchIndexFileContent(): Promise<string> {
-    const url = new URL("./templates/api_index.ts", import.meta.url);
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`Unable to load ${url.toString()} content.`);
-    }
-
-    return await response.text();
+    const url = new URL('../templates/api_index.ts', import.meta.url);
+    return await fetchFileContent(url)
 }
 
 export async function fetchHTTPClientFileContent(): Promise<string> {
-    const url = new URL("./templates/api_http_client.ts", import.meta.url);
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`Unable to load ${url.toString()} content.`);
-    }
-
-    return await response.text();
+    const url = new URL('../templates/api_http_client.ts', import.meta.url);
+    return await fetchFileContent(url)
 }
 
 export async function fetchWSClientFileContent(): Promise<string> {
-    const url = new URL("./templates/api_ws_client.ts", import.meta.url);
+    const url = new URL('../templates/api_ws_client.ts', import.meta.url);
+    return await fetchFileContent(url);
+}
+
+async function fetchFileContent(url: URL): Promise<string> {
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`Unable to load ${url.toString()} content.`);

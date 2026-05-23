@@ -1,7 +1,7 @@
-import { copy, ensureDir, exists } from '@std/fs';
+import { ensureDir, exists } from '@std/fs';
 import type { APIDefinition } from '@o-json-rpc/o-json-rpc-ts';
 import { generateHttpClient, generateResources, generateWSClient } from './generators/index.ts';
-import {fetchCommonFileContent, fetchIndexFileContent} from "./utils.ts";
+import { fetchCommonFileContent, fetchIndexFileContent } from './utils.ts';
 
 export async function generateTSClient(
     definition: APIDefinition,

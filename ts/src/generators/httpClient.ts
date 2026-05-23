@@ -1,4 +1,4 @@
-import {fetchHTTPClientFileContent} from "../utils.ts";
+import { fetchHTTPClientFileContent } from '../utils.ts';
 
 export async function generateHttpClient(
     api: string,

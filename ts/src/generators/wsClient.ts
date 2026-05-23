@@ -1,4 +1,4 @@
-import {fetchWSClientFileContent} from "../utils.ts";
+import { fetchWSClientFileContent } from '../utils.ts';
 
 export async function generateWSClient(
     api: string,
