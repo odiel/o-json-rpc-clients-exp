@@ -6,6 +6,8 @@ export async function generateTSClient(
     definition: APIDefinition,
     path: string,
 ) {
+    const currentDir = import.meta.dirname;
+
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
         const apiSlug = api.replaceAll('\\', '_').replaceAll('/', '_');
         const apiPath = `${path}/${apiSlug}`;
@@ -14,10 +16,10 @@ export async function generateTSClient(
             await ensureDir(apiPath);
         }
 
-        await copy(`./src/templates/common.ts`, `${apiPath}/common.ts`, { overwrite: true });
+        await copy(`${currentDir}/templates/common.ts`, `${apiPath}/common.ts`, { overwrite: true });
 
         await generateResources(apiPath, apiDefinition.resources);
-        await copy(`./src/templates/api_index.ts`, `${apiPath}/index.ts`, { overwrite: true });
+        await copy(`${currentDir}/templates/api_index.ts`, `${apiPath}/index.ts`, { overwrite: true });
 
         await generateHttpClient(api, apiPath, apiDefinition.procedures);
         await generateWSClient(api, apiPath, apiDefinition.procedures);
