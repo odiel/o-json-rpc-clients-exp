@@ -14,7 +14,7 @@ export async function generateTSClient(
             await ensureDir(apiPath);
         }
 
-        await copy(`.//templates/common.ts`, `${apiPath}/common.ts`, { overwrite: true });
+        await copy(`./templates/common.ts`, `${apiPath}/common.ts`, { overwrite: true });
 
         await generateResources(apiPath, apiDefinition.resources);
         await copy(`./templates/api_index.ts`, `${apiPath}/index.ts`, { overwrite: true });
