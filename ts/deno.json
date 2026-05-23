@@ -1,0 +1,28 @@
+{
+    "name": "@o-json-rpc/o-json-rpc-clients",
+    "version": "1.0.0",
+    "license": "MIT",
+    "exports": "./src/index.ts",
+    "tasks": {
+        "b": "deno run --check --allow-net ./src/index.ts",
+        "l": "deno lint",
+        "f": "deno fmt",
+        "fl": "deno fmt && deno lint"
+    },
+    "exclude": ["./src/templates"],
+    "imports": {
+        "@std/fs": "jsr:@std/fs@^1.0.19",
+        "@o-json-rpc/o-json-rpc-ts": "jsr:@o-json-rpc/o-json-rpc-ts@^1.0.5"
+    },
+    "fmt": {
+        "lineWidth": 200,
+        "indentWidth": 4,
+        "semiColons": true,
+        "singleQuote": true,
+        "proseWrap": "preserve",
+        "bracePosition": "sameLine",
+        "nextControlFlowPosition": "sameLine",
+        "operatorPosition": "sameLine",
+        "singleBodyPosition": "sameLine"
+    }
+}
