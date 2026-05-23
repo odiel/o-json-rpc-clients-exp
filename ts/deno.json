@@ -1,6 +1,6 @@
 {
     "name": "@o-json-rpc/o-json-rpc-clients",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "license": "MIT",
     "exports": "./src/index.ts",
     "tasks": {
@@ -12,6 +12,7 @@
     "exclude": ["./src/templates"],
     "imports": {
         "@std/fs": "jsr:@std/fs@^1.0.19",
+        "@std/path": "jsr:@std/path@^1.1.4",
         "@o-json-rpc/o-json-rpc-ts": "jsr:@o-json-rpc/o-json-rpc-ts@^1.0.5"
     },
     "fmt": {

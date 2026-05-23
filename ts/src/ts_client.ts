@@ -1,12 +1,13 @@
 import { copy, ensureDir, exists } from '@std/fs';
 import type { APIDefinition } from '@o-json-rpc/o-json-rpc-ts';
 import { generateHttpClient, generateResources, generateWSClient } from './generators/index.ts';
+import { getCurrentDirname } from './utils.ts';
 
 export async function generateTSClient(
     definition: APIDefinition,
     path: string,
 ) {
-    const currentDir = __dirname;
+    const currentDir = getCurrentDirname(import.meta.url);
 
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
         const apiSlug = api.replaceAll('\\', '_').replaceAll('/', '_');
