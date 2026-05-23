@@ -1,5 +1,5 @@
 import type { JSONSchema } from '@o-json-rpc/o-json-rpc-ts';
-import { dirname, fromFileUrl } from '@std/path';
+import { fromFileUrl, dirname } from "@std/path";
 
 export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
     if (schema.type === 'null') {
@@ -72,9 +72,9 @@ export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
 }
 
 export function getCurrentDirname(metaUrl: string): string {
-    if (metaUrl.startsWith('file://')) {
+    if (metaUrl.startsWith("file://")) {
         return dirname(fromFileUrl(metaUrl));
     }
 
-    return '';
+    return new URL(".", metaUrl).pathname;
 }
