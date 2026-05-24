@@ -24,7 +24,7 @@ export class HTTPClient {
         const payload = this.buildRequestPayload({ procedures: [...this.procedures], subscriptions: [] }, options);
         this.procedures = [];
 
-        this.logger.info('Sending payload to ' + url, { payload: payload });
+        this.logger.debug('Sending payload to ' + url, { payload: payload });
 
         let response;
 
@@ -39,7 +39,7 @@ export class HTTPClient {
 
             const json = await response.json();
 
-            this.logger.info('Response payload received', { payload: json });
+            this.logger.debug('Response payload received', { payload: json });
 
             return json;
         } catch (error) {

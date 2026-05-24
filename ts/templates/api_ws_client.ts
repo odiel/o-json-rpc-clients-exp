@@ -51,7 +51,7 @@ export class WSClient {
                 subscriptions,
             };
 
-            this.logger.info('Websocket: sending initial request', { payload: payload });
+            this.logger.debug('Websocket: sending initial request', { payload: payload });
 
             this.websocket && this.websocket.send(JSON.stringify(payload));
         };
@@ -73,10 +73,10 @@ export class WSClient {
 
             if (!firstMessageReceived) {
                 firstMessageReceived = true;
-                this.logger.info('Websocket: response payload received', { payload: data });
+                this.logger.debug('Websocket: response payload received', { payload: data });
                 return;
             } else {
-                this.logger.info('Websocket: message received', { payload: data });
+                this.logger.debug('Websocket: message received', { payload: data });
 
                 for (const handler of this.subscriptionHandlers) {
                     if ('resource_name' in data && handler.resource == data.resource_name) {
