@@ -57,7 +57,7 @@ export async function generateWSClient(
     
             this.websocket && this.websocket.send(JSON.stringify(payload));
         } else {
-            // todo: throw error
+            throw new ClientNotConnected('Request for procedure ${name} not sent, client is not connected.')
         }
     }
 `;

@@ -1,3 +1,5 @@
+// Generic types
+
 export type ProcedureRequest = {
     id: string;
     name: string;
@@ -66,6 +68,8 @@ export type ClientOptions = {
     };
 };
 
+// Logger
+
 export enum LogLevel {
     DEBUG = 0,
     INFO = 1,
@@ -127,5 +131,23 @@ export class ConsoleLogger extends AbstractLogger {
         }
         console.log(logLevel + ' [' + time.toISOString() + '] ' + message);
         console.log(JSON.stringify(metadata));
+    }
+}
+
+// Errors
+
+export class ClientError extends Error {
+    constructor(
+        public override message: string,
+    ) {
+        super(message);
+    }
+}
+
+export class ClientNotConnected extends ClientError {
+    constructor(
+        public override message: string,
+    ) {
+        super(message);
     }
 }

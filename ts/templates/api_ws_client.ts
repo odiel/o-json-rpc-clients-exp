@@ -1,4 +1,4 @@
-import type { AbstractLogger, ProcedureRequest, Request, SubscriptionRequest } from './common.ts';
+import type { AbstractLogger, ProcedureRequest, Request, SubscriptionRequest, ClientNotConnected } from './common.ts';
 import { ConsoleLogger, LogLevel } from './common.ts';
 import * as Resource from './resources.ts';
 
@@ -100,9 +100,9 @@ export class WSClient {
         return this;
     }
 
-    public disconnect() {
+    public disconnect(status: number = 1000, reason: string = 'Normal Closure') {
         if (this.websocket) {
-            this.websocket.close();
+            this.websocket.close(status, reason);
         }
     }
 
