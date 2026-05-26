@@ -1,6 +1,6 @@
-import type { AbstractLogger, ClientNotConnected, ProcedureRequest, Request, SubscriptionRequest } from './common.ts';
-import { ConsoleLogger, LogLevel } from './common.ts';
-import * as Resource from './resources.ts';
+import type { AbstractLogger, ProcedureRequest, Request, SubscriptionRequest } from './common.ts';
+import { ClientNotConnected, ConsoleLogger, LogLevel } from './common.ts';
+import type * as Resource from './resources.ts';
 
 export class WSClient {
     private logger: AbstractLogger;

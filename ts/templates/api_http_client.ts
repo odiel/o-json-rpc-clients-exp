@@ -1,6 +1,6 @@
 import type { AbstractLogger, ClientOptions, ProcedureRequest, Request, Response, SubscriptionRequest } from './common.ts';
 import { ConsoleLogger, LogLevel } from './common.ts';
-import * as Resource from './resources.ts';
+import type * as Resource from './resources.ts';
 
 export class HTTPClient {
     private logger: AbstractLogger;
