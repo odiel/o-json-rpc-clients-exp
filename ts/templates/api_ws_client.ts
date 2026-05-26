@@ -1,4 +1,4 @@
-import type { AbstractLogger, ProcedureRequest, Request, SubscriptionRequest, ClientNotConnected } from './common.ts';
+import type { AbstractLogger, ClientNotConnected, ProcedureRequest, Request, SubscriptionRequest } from './common.ts';
 import { ConsoleLogger, LogLevel } from './common.ts';
 import * as Resource from './resources.ts';
 

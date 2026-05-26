@@ -1,13 +1,13 @@
 {
     "name": "@o-json-rpc/o-json-rpc-clients",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "license": "MIT",
     "exports": "./src/index.ts",
     "tasks": {
         "c": "deno check ./src",
         "l": "deno lint ./src",
         "f": "deno fmt",
-        "fl": "deno fmt && deno lint"
+        "fl": "deno fmt ./src/ && deno lint ./src/"
     },
     "imports": {
         "@std/fs": "jsr:@std/fs@^1.0.19",

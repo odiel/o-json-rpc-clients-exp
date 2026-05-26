@@ -72,17 +72,17 @@ export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
 
 export async function fetchCommonFileContent(): Promise<string> {
     const url = new URL('../templates/common.ts', import.meta.url);
-    return await fetchFileContent(url)
+    return await fetchFileContent(url);
 }
 
 export async function fetchIndexFileContent(): Promise<string> {
     const url = new URL('../templates/api_index.ts', import.meta.url);
-    return await fetchFileContent(url)
+    return await fetchFileContent(url);
 }
 
 export async function fetchHTTPClientFileContent(): Promise<string> {
     const url = new URL('../templates/api_http_client.ts', import.meta.url);
-    return await fetchFileContent(url)
+    return await fetchFileContent(url);
 }
 
 export async function fetchWSClientFileContent(): Promise<string> {
