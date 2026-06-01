@@ -11,7 +11,7 @@ export async function generateTSClient(
     const indexFileContent = await fetchIndexFileContent();
 
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
-        const apiSlug = api.replaceAll('\\', '_').replaceAll('/', '_');
+        const apiSlug = api.replaceAll(/[.]|[\/]|[-]/g, '_');
         const apiPath = `${path}/${apiSlug}`;
 
         if (!(await exists(apiPath, { isDirectory: true }))) {
