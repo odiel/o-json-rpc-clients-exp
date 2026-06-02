@@ -34,30 +34,30 @@ export async function generateWSClient(
      * Method for calling procedure ${name}.
      * Note: the request is sent immediately
      */
-    public ${name}(${inputType}, options?: { procedureId?: string; }) {
+    public ${name}(${inputType}, options?: { procedureId?: string }) {
         if (this.isConnected()) {
             const procedure: ProcedureRequest = {
                 id: options?.procedureId || '${name}',
-                name: '${name}'
-            }
+                name: '${name}',
+            };
 
             if (input) {
                 procedure.input = input;
             }
-        
+
             const payload: Request = {
                 protocol: 'v1',
                 api: this.apiVersion,
                 procedures: [
-                    procedure
+                    procedure,
                 ],
-            }
+            };
     
-            this.logger.debug('Websocket: sending request', { payload: payload })
+            this.logger.debug('Websocket: sending request', { payload: payload });
     
             this.websocket && this.websocket.send(JSON.stringify(payload));
         } else {
-            throw new ClientNotConnected('Request for procedure [${name}] not sent; client is not connected.')
+            throw new ClientNotConnected('Request for procedure [${name}] not sent; client is not connected.');
         }
     }
 `;

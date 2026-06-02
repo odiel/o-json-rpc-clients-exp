@@ -1,4 +1,4 @@
-import type { AbstractLogger, ClientOptions, ProcedureRequest, Request, Response, SubscriptionRequest } from './common.ts';
+import type { AbstractLogger, ClientOptions, ProcedureRequest, Request, Response } from './common.ts';
 import { ConsoleLogger, LogLevel } from './common.ts';
 import type * as Resource from './resources.ts';
 
@@ -21,7 +21,7 @@ export class HTTPClient {
     // replace: proceduresCode
     public async send(options?: ClientOptions): Promise<Response> {
         const url = 'http://' + this.host + ':' + this.port;
-        const payload = this.buildRequestPayload( [...this.procedures], options);
+        const payload = this.buildRequestPayload([...this.procedures], options);
         this.procedures = [];
 
         this.logger.debug('Sending payload to ' + url, { payload: payload });

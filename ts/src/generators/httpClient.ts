@@ -30,7 +30,7 @@ export async function generateHttpClient(
         }
 
         proceduresCode += `
-    public ${name}(${inputType}, options?: { procedureId?: string; }) {
+    public ${name}(${inputType}, options?: { procedureId?: string }) {
         this.addProcedure('${name}', options?.procedureId || '${name}', input);
         return this;
     }

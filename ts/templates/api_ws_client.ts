@@ -120,6 +120,5 @@ export class WSClient {
     public onDisconnect(fn: () => void) {
         this.onDisconnectFn = fn;
     }
-
     // replace: proceduresCode
 }
