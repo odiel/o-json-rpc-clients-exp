@@ -21,7 +21,7 @@ export class HTTPClient {
     // replace: proceduresCode
     public async send(options?: ClientOptions): Promise<Response> {
         const url = 'http://' + this.host + ':' + this.port;
-        const payload = this.buildRequestPayload({ procedures: [...this.procedures], subscriptions: [] }, options);
+        const payload = this.buildRequestPayload( [...this.procedures], options);
         this.procedures = [];
 
         this.logger.debug('Sending payload to ' + url, { payload: payload });
@@ -59,16 +59,12 @@ export class HTTPClient {
         this.procedures.push(procedure);
     }
 
-    private buildRequestPayload(operations: { procedures: ProcedureRequest[]; subscriptions: SubscriptionRequest[] }, options?: ClientOptions): Request {
+    private buildRequestPayload(procedures: ProcedureRequest[], options?: ClientOptions): Request {
         const request: Request = {
             protocol: 'v1',
             api: this.apiVersion,
-            procedures: operations.procedures,
+            procedures,
         };
-
-        if (operations.subscriptions.length > 0) {
-            request.subscriptions = operations.subscriptions;
-        }
 
         if (options) {
             request.options = {};

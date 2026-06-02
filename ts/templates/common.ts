@@ -16,8 +16,7 @@ export type ProcedureResult = {
 };
 
 export type SubscriptionRequest = {
-    id: string;
-    resource: string;
+    resource_name: string;
 };
 
 export type Response = {

@@ -40,8 +40,7 @@ export class WSClient {
 
             for (const handler of this.subscriptionHandlers) {
                 subscriptions.push({
-                    id: 'subscribe_to_' + handler.resource,
-                    resource: handler.resource,
+                    resource_name: handler.resource,
                 });
             }
 
