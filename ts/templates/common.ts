@@ -38,19 +38,19 @@ export type Response = {
 export type AuthenticationOptions = {
     scheme: 'session';
     token: string;
-    token_format: 'plain-text' | 'base64';
+    token_type: 'plain-text' | 'base64';
 } | {
     scheme: 'api_key';
     token: string;
-    token_format: 'plain-text' | 'base64';
+    token_type: 'plain-text' | 'base64';
 } | {
     scheme: 'access_token' | 'refresh_token';
     token: string;
-    token_format: 'jwt';
+    token_type: 'jwt';
 } | {
     scheme: 'identity_provider';
     token: string;
-    token_format: string;
+    token_type: string;
     provider: string;
 };
 
