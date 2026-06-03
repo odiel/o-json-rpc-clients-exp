@@ -35,17 +35,32 @@ export type Response = {
     };
 };
 
+export type AuthenticationOptions = {
+    scheme: 'session';
+    token: string;
+    token_format: 'plain-text' | 'base64';
+} | {
+    scheme: 'api_key';
+    token: string;
+    token_format: 'plain-text' | 'base64';
+} | {
+    scheme: 'access_token' | 'refresh_token';
+    token: string;
+    token_format: 'jwt';
+} | {
+    scheme: 'identity_provider';
+    token: string;
+    token_format: string;
+    provider: string;
+};
+
 export type Request = {
     protocol: string;
     api: string;
     procedures?: ProcedureRequest[];
     subscriptions?: SubscriptionRequest[];
     options?: {
-        authentication?: {
-            scheme: 'bearer';
-            token: string;
-            token_format: 'JWT';
-        };
+        authentication?: AuthenticationOptions;
         execution?: {
             strategy?: 'sequential' | 'parallel';
             timeout?: number;
@@ -55,11 +70,7 @@ export type Request = {
 };
 
 export type ClientOptions = {
-    authentication?: {
-        scheme: 'bearer';
-        token: string;
-        token_format: 'JWT';
-    };
+    authentication?: AuthenticationOptions;
     execution?: {
         strategy?: 'sequential' | 'parallel';
         timeout?: number;
