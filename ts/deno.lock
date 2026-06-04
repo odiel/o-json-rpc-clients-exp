@@ -1,17 +1,17 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@o-json-rpc/o-json-rpc-ts@^1.0.5": "1.0.5",
+    "jsr:@o-json-rpc/o-json-rpc-ts@^0.0.1": "0.0.1",
     "jsr:@std/fs@^1.0.19": "1.0.23",
     "jsr:@std/internal@^1.0.12": "1.0.13",
     "jsr:@std/path@^1.1.4": "1.1.4",
     "npm:@types/express@4.17.21": "4.17.21",
     "npm:typescript@5.7.2": "5.7.2",
-    "npm:zod@^4.1.4": "4.3.6"
+    "npm:zod@^4.1.4": "4.4.3"
   },
   "jsr": {
-    "@o-json-rpc/o-json-rpc-ts@1.0.5": {
-      "integrity": "1061bdb0936f1a3566dffa213aabeb9dcc6d8f05b735c79cd1beab734749fc09",
+    "@o-json-rpc/o-json-rpc-ts@0.0.1": {
+      "integrity": "407be2a6eb556c89f815804a95708780abab82aa540b26775470d6cabe556d31",
       "dependencies": [
         "npm:zod"
       ]
@@ -111,13 +111,13 @@
     "undici-types@6.20.0": {
       "integrity": "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="
     },
-    "zod@4.3.6": {
-      "integrity": "sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg=="
+    "zod@4.4.3": {
+      "integrity": "sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ=="
     }
   },
   "workspace": {
     "dependencies": [
-      "jsr:@o-json-rpc/o-json-rpc-ts@^1.0.5",
+      "jsr:@o-json-rpc/o-json-rpc-ts@^0.0.1",
       "jsr:@std/fs@^1.0.19"
     ]
   }

@@ -15,7 +15,7 @@ export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
 
     if (schema.type === 'string') {
         if (schema.enum) {
-            return schema.enum.map((e) => `'${e}'`).join(' | ');
+            return schema.enum.map((e: unknown) => `'${e}'`).join(' | ');
         }
 
         if (schema.const) {
@@ -36,7 +36,7 @@ export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
             }
 
             if ('anyOf' in schema.items && schema.items.anyOf !== undefined) {
-                return schema.items.anyOf.map((e) => `${schemaToTypescript(e)}[]`).join(' | ');
+                return schema.items.anyOf.map((e: JSONSchema) => `${schemaToTypescript(e)}[]`).join(' | ');
             }
         }
     }
@@ -60,7 +60,7 @@ export function schemaToTypescript(schema: JSONSchema, name = 'Root'): string {
     }
 
     if (schema.anyOf) {
-        return schema.anyOf.map((e) => schemaToTypescript(e)).join(' | ');
+        return schema.anyOf.map((e: JSONSchema) => schemaToTypescript(e)).join(' | ');
     }
 
     // if (schema.allOf) {}

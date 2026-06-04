@@ -1,6 +1,6 @@
 {
-    "name": "@o-json-rpc/o-json-rpc-clients",
-    "version": "1.0.25",
+    "name": "@o-json-rpc/o-json-rpc-clients-exp",
+    "version": "0.0.1",
     "license": "MIT",
     "exports": "./src/index.ts",
     "tasks": {
@@ -11,7 +11,7 @@
     },
     "imports": {
         "@std/fs": "jsr:@std/fs@^1.0.19",
-        "@o-json-rpc/o-json-rpc-ts": "jsr:@o-json-rpc/o-json-rpc-ts@^1.0.5"
+        "@o-json-rpc/o-json-rpc-ts": "jsr:@o-json-rpc/o-json-rpc-ts@^0.0.1"
     },
     "fmt": {
         "lineWidth": 200,
