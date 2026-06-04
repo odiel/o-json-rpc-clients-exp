@@ -52,9 +52,9 @@ export async function generateWSClient(
                     procedure,
                 ],
             };
-    
+
             this.logger.debug('Websocket: sending request', { payload: payload });
-    
+
             this.websocket && this.websocket.send(JSON.stringify(payload));
         } else {
             throw new ClientNotConnected('Request for procedure [${name}] not sent; client is not connected.');
