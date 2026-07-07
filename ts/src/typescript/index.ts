@@ -2,6 +2,7 @@ import { ensureDir, exists } from '@std/fs';
 import type { APIDefinition } from '@o-json-rpc/o-json-rpc-ts';
 import { generateHttpClient, generateResources, generateWSClient } from './generators/index.ts';
 import { fetchTemplateAPIIndex, fetchTemplateCommon } from './utils.ts';
+import { apiSlug } from '../utils.ts';
 
 export async function generateTypeScriptClient(
     definition: APIDefinition,
@@ -11,8 +12,7 @@ export async function generateTypeScriptClient(
     const indexFileContent = await fetchTemplateAPIIndex();
 
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
-        const apiSlug = api.replaceAll(/[.]|[\/]|[-]/g, '_');
-        const apiPath = `${path}/${apiSlug}`;
+        const apiPath = `${path}/${apiSlug(api)}`;
 
         if (!(await exists(apiPath, { isDirectory: true }))) {
             await ensureDir(apiPath);

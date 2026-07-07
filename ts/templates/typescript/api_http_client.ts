@@ -9,6 +9,8 @@ export class HTTPClient {
 
     private procedures: ProcedureRequest[] = [];
 
+    private serverUrl: string = '';
+
     constructor(
         private host: string,
         private port: number,
@@ -16,20 +18,20 @@ export class HTTPClient {
             logger?: AbstractLogger;
         },
     ) {
+        this.serverUrl = 'http://' + this.host + ':' + this.port;
         this.logger = options?.logger ?? new ConsoleLogger(LogLevel.INFO);
     }
     // replace: proceduresCode
     public async send(options?: ClientOptions): Promise<Response> {
-        const url = 'http://' + this.host + ':' + this.port;
         const payload = this.buildRequestPayload([...this.procedures], options);
         this.procedures = [];
 
-        this.logger.debug('Sending payload to ' + url, { payload: payload });
+        this.logger.debug('Sending payload to ' + this.serverUrl, { payload: payload });
 
         let response;
 
         try {
-            response = await fetch(url, {
+            response = await fetch(this.serverUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

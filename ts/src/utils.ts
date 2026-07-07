@@ -10,3 +10,14 @@ export async function fetchTextFileContent(url: URL): Promise<string> {
 
     return await response.text();
 }
+
+export function apiSlug(api: string) {
+    return api.replaceAll(/[.]|[\/]|[-]/g, '_');
+}
+
+export function snakeCase(value: string) {
+    return value
+        .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+        .replace(/[\s\-]+/g, '_')
+        .toLowerCase();
+}

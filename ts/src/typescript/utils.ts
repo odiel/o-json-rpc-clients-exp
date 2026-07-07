@@ -16,16 +16,16 @@ export function schemaToTypescript(schema: JSONSchema, name: string, dept: numbe
 
     if (schema.type === 'string') {
         if (schema.enum) {
-            const values = schema.enum.map((e: unknown) => `'${e}'`).join(' | ')
+            const values = schema.enum.map((e: unknown) => `'${e}'`).join(' | ');
             enums.push(`export type ${name} = ${values};`);
             return name;
         }
 
         if (schema.const) {
-            return `'${schema.const.toString()}'`
+            return `'${schema.const.toString()}'`;
         }
 
-        return  'string';
+        return 'string';
     }
 
     if (schema.type === 'array' && schema.items) {
