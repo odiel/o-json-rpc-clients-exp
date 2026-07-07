@@ -1,5 +1,5 @@
 import { fetchTemplateHTTPClient } from '../utils.ts';
-import {apiSlug, snakeCase} from '../../utils.ts';
+import { apiSlug, snakeCase } from '../../utils.ts';
 
 export async function generateHttpClient(
     api: string,
