@@ -1,4 +1,4 @@
-import { fetchHTTPClientFileContent } from '../utils.ts';
+import { fetchTemplateHTTPClient } from '../utils.ts';
 
 export async function generateHttpClient(
     api: string,
@@ -8,7 +8,7 @@ export async function generateHttpClient(
         output?: string;
     }>,
 ) {
-    let templateFile = await fetchHTTPClientFileContent();
+    let templateFile = await fetchTemplateHTTPClient();
     let proceduresCode = '';
 
     for (const [name, options] of Object.entries(procedures)) {

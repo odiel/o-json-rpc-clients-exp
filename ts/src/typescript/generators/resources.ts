@@ -5,8 +5,9 @@ export async function generateResources(apiPath: string, resources: Record<Resou
     let resourceCode = '';
 
     for (const [resourceName, jsonSchema] of Object.entries(resources)) {
-        const resourceSchema = schemaToTypescript(jsonSchema);
-        resourceCode += `\nexport type ${resourceName} = ${resourceSchema};\n`;
+        const enums: string[] = [];
+        const resourceSchema = schemaToTypescript(jsonSchema, resourceName, 0, enums);
+        resourceCode += `${enums.length > 0 ? `\n${enums.join('\n')}` : ''}\nexport type ${resourceName} = ${resourceSchema};\n`;
     }
 
     await Deno.writeTextFile(`${apiPath}/resources.ts`, resourceCode);

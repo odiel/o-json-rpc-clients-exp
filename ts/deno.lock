@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@o-json-rpc/o-json-rpc-ts@^0.0.5": "0.0.5",
+    "jsr:@o-json-rpc/o-json-rpc-ts@^0.0.9": "0.0.9",
     "jsr:@std/fs@^1.0.19": "1.0.23",
     "jsr:@std/internal@^1.0.12": "1.0.13",
     "jsr:@std/path@^1.1.4": "1.1.4",
@@ -10,8 +10,8 @@
     "npm:zod@^4.1.4": "4.4.3"
   },
   "jsr": {
-    "@o-json-rpc/o-json-rpc-ts@0.0.5": {
-      "integrity": "8d3eb5ad14358180f42136f8382fd019e27c156a0fbc1f2a8083a9809a6476d2",
+    "@o-json-rpc/o-json-rpc-ts@0.0.9": {
+      "integrity": "050369d1dd9092d3020e3dff03b69c0e6b4e6b0a1ec7e75562daa6ae995650b5",
       "dependencies": [
         "npm:zod"
       ]
@@ -117,7 +117,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@o-json-rpc/o-json-rpc-ts@^0.0.5",
+      "jsr:@o-json-rpc/o-json-rpc-ts@^0.0.9",
       "jsr:@std/fs@^1.0.19"
     ]
   }

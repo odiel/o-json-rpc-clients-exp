@@ -1,14 +1,14 @@
 import { ensureDir, exists } from '@std/fs';
 import type { APIDefinition } from '@o-json-rpc/o-json-rpc-ts';
 import { generateHttpClient, generateResources, generateWSClient } from './generators/index.ts';
-import { fetchCommonFileContent, fetchIndexFileContent } from './utils.ts';
+import { fetchTemplateAPIIndex, fetchTemplateCommon } from './utils.ts';
 
-export async function generateTSClient(
+export async function generateTypeScriptClient(
     definition: APIDefinition,
     path: string,
 ) {
-    const commonFileContent = await fetchCommonFileContent();
-    const indexFileContent = await fetchIndexFileContent();
+    const commonFileContent = await fetchTemplateCommon();
+    const indexFileContent = await fetchTemplateAPIIndex();
 
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
         const apiSlug = api.replaceAll(/[.]|[\/]|[-]/g, '_');

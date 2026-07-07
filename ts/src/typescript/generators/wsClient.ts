@@ -1,4 +1,4 @@
-import { fetchWSClientFileContent } from '../utils.ts';
+import { fetchTemplateWSClient } from '../utils.ts';
 
 export async function generateWSClient(
     api: string,
@@ -8,7 +8,7 @@ export async function generateWSClient(
         output?: string;
     }>,
 ) {
-    let templateFile = await fetchWSClientFileContent();
+    let templateFile = await fetchTemplateWSClient();
     let proceduresCode = '';
 
     for (const [name, options] of Object.entries(procedures)) {
