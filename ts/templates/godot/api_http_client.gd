@@ -74,7 +74,7 @@ func _on_request_done(result: int, response_code: int, _headers: PackedStringArr
 
         if parse_err == OK:
             var payload = json.get_data()
-            on_response.emit()
+            on_response.emit(payload)
             if option_log_level < 2:
                 print("[DEBUG] Response payload")
                 print(payload)
