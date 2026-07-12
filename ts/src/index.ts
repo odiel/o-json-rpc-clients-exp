@@ -8,7 +8,7 @@ export enum Technology {
     TYPESCRIPT = 'typescript',
     GODOT = 'godot',
 }
-export type Clients = { technology: Technology; path: string }[];
+export type Clients = { technology: Technology; path: string; apis?: string[] }[];
 
 export async function generateClients(
     definition: APIDefinition,
@@ -22,11 +22,11 @@ export async function generateClients(
         }
 
         if (client.technology === Technology.TYPESCRIPT) {
-            await generateTypeScriptClient(definition, client.path);
+            await generateTypeScriptClient(definition, client.path, client.apis);
         }
 
         if (client.technology === Technology.GODOT) {
-            await generateGodotClient(definition, client.path);
+            await generateGodotClient(definition, client.path, client.apis);
         }
     }
 }

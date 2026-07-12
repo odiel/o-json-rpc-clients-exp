@@ -7,11 +7,16 @@ import { apiSlug } from '../utils.ts';
 export async function generateTypeScriptClient(
     definition: APIDefinition,
     path: string,
+    apis?: string[],
 ) {
     const commonFileContent = await fetchTemplateCommon();
     const indexFileContent = await fetchTemplateAPIIndex();
 
     for (const [api, apiDefinition] of Object.entries(definition.apis)) {
+        if (apis && apis.length > 0 && !apis.includes(api)) {
+            continue;
+        }
+
         const apiPath = `${path}/${apiSlug(api)}`;
 
         if (!(await exists(apiPath, { isDirectory: true }))) {

@@ -20,18 +20,8 @@ export async function generateHttpClient(
         // let _outputType = 'undefined';
 
         if (options.input) {
-            // const inputResource = options.input.replace('#/resources/', '');
-
-            // const inputTypeName = `${inputResource}`;
-
             inputType = `input: Variant`;
         }
-        //
-        // if (options.output) {
-        //     const outputResource = options.output.replace('#/resources/', '');
-        //
-        //     _outputType = `${outputResource}`;
-        // }
 
         proceduresCode += `
 func ${snakeCase(name)}(${inputType}, id: String = "") -> ORPC_HTTP_Client_${api_slug}:
