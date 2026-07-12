@@ -48,9 +48,14 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 	_registered_procedures.clear()
 
 	if result != HTTPRequest.RESULT_SUCCESS:
+		if option_log_level <= 3:
+			print("[ERROR] Server response error %d" % error)
 		return ORPC_Common.Response.create_error("request_failure", "%s" % result)
 
 	if response_code < 200 or response_code >= 300:
+		if option_log_level <= 3:
+			print("[ERROR] Server response not OK %d" % error)
+
 		return ORPC_Common.Response.create_error("server_failure", "%s" % response_code)
 
 	var response_string = body.get_string_from_utf8()
@@ -74,7 +79,7 @@ func add_procedure(name: String, id: String = "", input: Variant = null) -> ORPC
 		id = name
 	_registered_procedures.append(ORPC_Common.ProcedureRequest.new(name, id, input))
 	if option_log_level < 2:
-		print("[DEBUG] Procedure execution added to the stack name: %s; id: %s" % [name, id])
+		print("[DEBUG] Procedure added to the stack name: %s; id: %s" % [name, id])
 	return self
 
 # replace: proceduresCode
