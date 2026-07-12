@@ -19,7 +19,7 @@ func _init(host: String, port: int, options: Dictionary[String, Variant] = {}):
     if options.has("log_level"):
         option_log_level = options["log_level"]
 
-func send(options: Dictionary[String, Variant] = {}) -> ORPC_HTTP_Client_${apiSlug}:
+func send(options: RequestOptions = null) -> ORPC_HTTP_Client_${apiSlug}.Response:
     var http_request = HTTPRequest.new()
     add_child(http_request)
     http_request.timeout = option_request_timeout
@@ -32,12 +32,12 @@ func send(options: Dictionary[String, Variant] = {}) -> ORPC_HTTP_Client_${apiSl
         print("[DEBUG] Sending payload to %s" % server_url)
         print(json_string)
 
-	var error = http_request.request(server_url, headers, HTTPClient.METHOD_POST, json_string)
+    var error = http_request.request(server_url, headers, HTTPClient.METHOD_POST, json_string)
     if error != OK:
-		if option_log_level <= 3:
-			print("[ERROR] Request failed with error code %d" % error)
+        if option_log_level <= 3:
+            print("[ERROR] Request failed with error code %d" % error)
 
-		return Response.create_error("request_failure", error)
+        return Response.create_error("request_failure", error)
 
     var network_result = await http_request.request_completed
 	var result: int = network_result[0]
@@ -79,7 +79,7 @@ func add_procedure(name: String, id: String = "", input: Variant = null) -> ORPC
 
 # replace: proceduresCode
 
-func _build_request_payload(options: Dictionary[String, Variant] = {}) -> Variant :
+func _build_request_payload(options: RequestOptions = null) -> Variant :
     var procedures_json: Array[Variant] = []
     for procedure in _registered_procedures:
         procedures_json.append(procedure.to_simple_obj())
