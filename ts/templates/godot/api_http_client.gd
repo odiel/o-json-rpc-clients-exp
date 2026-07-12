@@ -69,8 +69,7 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 		return ORPC_Common.Response.create_error("invalid_response", "%s" % response_string)
 
 	if option_log_level < 2:
-		print("[DEBUG] Response payload")
-		print(response_string)
+		print("[DEBUG] Payload received")
 
 	return ORPC_Common.Response.create_success(json.get_data())
 
