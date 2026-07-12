@@ -40,20 +40,20 @@ func send(options: RequestOptions = null) -> ORPC_HTTP_Client_${apiSlug}.Respons
         return Response.create_error("request_failure", error)
 
     var network_result = await http_request.request_completed
-	var result: int = network_result[0]
+    var result: int = network_result[0]
     var response_code: int = network_result[1]
     var body: PackedByteArray = network_result[3]
 
     http_request.queue_free()
-	_registered_procedures.clear()
+    _registered_procedures.clear()
 
     if result != HTTPRequest.RESULT_SUCCESS:
-	    return Response.create_error("request_failure", "%s" % result)
+        return Response.create_error("request_failure", "%s" % result)
 
     if response_code < 200 or response_code >= 300:
-		return Response.create_error("server_failure", "%s" % response_code)
+        return Response.create_error("server_failure", "%s" % response_code)
 
-	var response_string = body.get_string_from_utf8()
+    var response_string = body.get_string_from_utf8()
     var json = JSON.new()
     var response_payload = json.parse(response_string)
 
@@ -86,8 +86,8 @@ func _build_request_payload(options: RequestOptions = null) -> Variant :
 
     var options_payload = {}
 
-	if options:
-		options_payload = options.to_payload()
+    if options:
+        options_payload = options.to_payload()
 
     var payload = {
         "protocol": "v1",
