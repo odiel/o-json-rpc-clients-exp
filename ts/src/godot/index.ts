@@ -2,6 +2,7 @@ import { ensureDir, exists } from '@std/fs';
 import type { APIDefinition } from '@o-json-rpc/o-json-rpc-ts';
 import { generateHttpClient } from './generators/httpClient.ts';
 import { apiSlug } from '../utils.ts';
+import { fetchCommon } from './utils.ts';
 
 export async function generateGodotClient(
     definition: APIDefinition,
@@ -21,4 +22,7 @@ export async function generateGodotClient(
 
         await generateHttpClient(api, apiPath, apiDefinition.procedures);
     }
+
+    const commonFile = await fetchCommon();
+    await Deno.writeTextFile(`${path}/common.gd`, commonFile);
 }
