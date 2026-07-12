@@ -25,8 +25,8 @@ export async function generateHttpClient(
 
         proceduresCode += `
 func ${snakeCase(name)}(${inputType}, id: String = "") -> ORPC_HTTP_Client_${api_slug}:
-    self.add_procedure("${name}", id, input)
-    return self
+\tself.add_procedure("${name}", id, input)
+\treturn self
 `;
     }
 
