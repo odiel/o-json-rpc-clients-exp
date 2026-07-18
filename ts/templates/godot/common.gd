@@ -40,17 +40,25 @@ class Response:
 
 class RequestOptions:
 	var authentication: RequestAuthentication
+	var execution: RequestExecution
 
-	static func with_authentication(authentication: RequestAuthentication) -> RequestOptions:
-		var res = RequestOptions.new()
-		res.authentication = authentication
-		return res
+	func use_authentication(authentication: RequestAuthentication) -> RequestOptions:
+		self.authentication = authentication
+		return self
+
+	func use_sequential_strategy(execution: RequestExecution) -> RequestOptions:
+		self.execution = execution
+		return self
+
 
 	func to_payload() -> Variant:
 		var payload = {}
 
 		if (authentication):
 			payload["authentication"] = authentication.to_payload()
+
+		if execution:
+			payload["execution"] = execution.to_payload()
 
 		return payload
 
@@ -69,6 +77,13 @@ class RequestExecution:
 		res.strategy = "parallel"
 		res.procedure_timeout = procedure_timeout
 		return res
+
+	func to_payload() -> Variant:
+		var payload = {
+			"strategy": strategy,
+		}
+
+		return payload
 
 class RequestAuthentication:
 	var scheme: String = ""

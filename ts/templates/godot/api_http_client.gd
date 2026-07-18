@@ -29,7 +29,7 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 	var json_string = JSON.stringify(payload)
 
 	if option_log_level < 2:
-		print("[DEBUG] Sending payload to %s" % server_url)
+		print("[DEBUG] => Request payload to %s" % server_url)
 		print(json_string)
 
 	var error = http_request.request(server_url, headers, HTTPClient.METHOD_POST, json_string)
@@ -69,7 +69,8 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 		return ORPC_Common.Response.create_error("invalid_response", "%s" % response_string)
 
 	if option_log_level < 2:
-		print("[DEBUG] Payload received")
+		print("[DEBUG] <= Response payload")
+		print(response_string)
 
 	return ORPC_Common.Response.create_success(json.get_data())
 
@@ -78,7 +79,7 @@ func add_procedure(name: String, id: String = "", input: Variant = null) -> ORPC
 		id = name
 	_registered_procedures.append(ORPC_Common.ProcedureRequest.new(name, id, input))
 	if option_log_level < 2:
-		print("[DEBUG] Procedure added to the stack name: %s; id: %s" % [name, id])
+		print("[DEBUG] Procedure added to the stack; name: %s; id: %s" % [name, id])
 	return self
 
 # replace: proceduresCode
