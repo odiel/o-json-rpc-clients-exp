@@ -94,8 +94,8 @@ class RequestAuthentication:
 	static func with_session(p_token: String, p_token_type: String) -> RequestAuthentication:
 		var res = RequestAuthentication.new()
 		res.scheme = "session"
-		res.token = token
-		res.token_type = token_type
+		res.token = p_token
+		res.token_type = p_token_type
 		return res
 
 	static func with_access_token(p_token: String) -> RequestAuthentication:
