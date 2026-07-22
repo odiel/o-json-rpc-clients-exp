@@ -78,9 +78,9 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 
 	return ORPC_Common.Response.create_success(json.get_data())
 
-func add_procedure(name: String, id: String = "", input: Variant = null) -> ORPC_HTTP_Client_${apiSlug}:
+func add_procedure(p_name: String, id: String = "", input: Variant = null) -> ORPC_HTTP_Client_${apiSlug}:
 	if id == "":
-		id = name
+		id = p_name
 	_registered_procedures.append(ORPC_Common.ProcedureRequest.new(name, id, input))
 	if option_log_level < 2:
 		print("[DEBUG] Procedure added to the stack; name: %s; id: %s" % [name, id])
