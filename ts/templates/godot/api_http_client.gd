@@ -19,6 +19,10 @@ func _init(host: String, port: int, options: Dictionary[String, Variant] = {}):
 	if options.has("log_level"):
 		option_log_level = options["log_level"]
 
+func send_sequential(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
+	options.execution.strategy = "sequential"
+	return await self.send(options)
+
 func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 	var http_request = HTTPRequest.new()
 	add_child(http_request)

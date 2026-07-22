@@ -42,12 +42,12 @@ class RequestOptions:
 	var authentication: RequestAuthentication
 	var execution: RequestExecution
 
-	func use_authentication(authentication: RequestAuthentication) -> RequestOptions:
-		self.authentication = authentication
+	func use_authentication(p_authentication: RequestAuthentication) -> RequestOptions:
+		self.authentication = p_authentication
 		return self
 
-	func use_sequential_strategy(execution: RequestExecution) -> RequestOptions:
-		self.execution = execution
+	func use_sequential_strategy(p_execution: RequestExecution) -> RequestOptions:
+		self.execution = p_execution
 		return self
 
 
@@ -66,16 +66,16 @@ class RequestExecution:
 	var strategy: String = "parallel"
 	var procedure_timeout: int = 5
 
-	static func with_sequential_strategy(procedure_timeout: int = 5) -> RequestExecution:
+	static func with_sequential_strategy(p_procedure_timeout: int = 5) -> RequestExecution:
 		var res = RequestExecution.new()
 		res.strategy = "sequential"
-		res.procedure_timeout = procedure_timeout
+		res.procedure_timeout = p_procedure_timeout
 		return res
 
-	static func with_parallel_strategy(procedure_timeout: int = 5) -> RequestExecution:
+	static func with_parallel_strategy(p_procedure_timeout: int = 5) -> RequestExecution:
 		var res = RequestExecution.new()
 		res.strategy = "parallel"
-		res.procedure_timeout = procedure_timeout
+		res.procedure_timeout = p_procedure_timeout
 		return res
 
 	func to_payload() -> Variant:
@@ -91,32 +91,32 @@ class RequestAuthentication:
 	var token_type: String = ""
 	var provider: String = ""
 
-	static func with_session(token: String, token_type: String) -> RequestAuthentication:
+	static func with_session(p_token: String, p_token_type: String) -> RequestAuthentication:
 		var res = RequestAuthentication.new()
 		res.scheme = "session"
 		res.token = token
 		res.token_type = token_type
 		return res
 
-	static func with_access_token(token: String) -> RequestAuthentication:
+	static func with_access_token(p_token: String) -> RequestAuthentication:
 		var res = RequestAuthentication.new()
 		res.scheme = "access_token"
-		res.token = token
+		res.token = p_token
 		res.token_type = "jwt"
 		return res
 
-	static func with_refresh_token(token: String) -> RequestAuthentication:
+	static func with_refresh_token(p_token: String) -> RequestAuthentication:
 		var res = RequestAuthentication.new()
 		res.scheme = "refresh_token"
-		res.token = token
+		res.token = p_token
 		res.token_type = "jwt"
 		return res
 
-	static func with_identity_provider(token: String, token_type: String, provider: String) -> RequestAuthentication:
+	static func with_identity_provider(p_token: String, p_token_type: String, _provider: String) -> RequestAuthentication:
 		var res = RequestAuthentication.new()
 		res.scheme = "identity_provider"
-		res.token = token
-		res.token_type = token_type
+		res.token = p_token
+		res.token_type = p_token_type
 		return res
 
 	func to_payload() -> Variant:
