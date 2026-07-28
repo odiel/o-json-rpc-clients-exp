@@ -42,6 +42,10 @@ class RequestOptions:
 	var authentication: RequestAuthentication
 	var execution: RequestExecution
 
+	func _init():
+		authentication = RequestAuthentication.new()
+		execution = RequestExecution.new()
+
 	func use_authentication(p_authentication: RequestAuthentication) -> RequestOptions:
 		self.authentication = p_authentication
 		return self

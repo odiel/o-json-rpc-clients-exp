@@ -20,6 +20,9 @@ func _init(host: String, port: int, options: Dictionary[String, Variant] = {}):
 		option_log_level = options["log_level"]
 
 func send_sequential(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
+	if options == null:
+		options = ORPC_Common.RequestOptions.new()
+
 	options.execution.strategy = "sequential"
 	return await self.send(options)
 
