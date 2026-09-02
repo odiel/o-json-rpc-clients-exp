@@ -50,7 +50,7 @@ class RequestOptions:
 		self.authentication = p_authentication
 		return self
 
-	func use_sequential_strategy(p_execution: RequestExecution) -> RequestOptions:
+	func use_execution_strategy(p_execution: RequestExecution) -> RequestOptions:
 		self.execution = p_execution
 		return self
 
