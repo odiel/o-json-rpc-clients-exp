@@ -46,6 +46,8 @@ func open(auto_reconnect: bool = false, reconect_attempts: int = 10) -> void:
 		_max_reconnect_attempts = reconect_attempts
 
 		_socket = WebSocketPeer.new()
+		# 256KB
+		_socket.inbound_buffer_size = 262,144
 		connect_to_host()
 
 func close() -> void:
