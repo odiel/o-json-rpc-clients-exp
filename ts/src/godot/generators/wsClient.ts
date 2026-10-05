@@ -24,7 +24,7 @@ export async function generateWsClient(
         }
 
         proceduresCode += `
-func ${snakeCase(name)}(${inputType}, id: String = "") -> ORPC_HTTP_Client_${api_slug}:
+func ${snakeCase(name)}(${inputType}, id: String = "") -> ORPC_WS_Client_${api_slug}:
 \tself.add_procedure("${name}", id, input)
 \treturn self
 `;
