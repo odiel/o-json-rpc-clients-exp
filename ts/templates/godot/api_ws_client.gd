@@ -35,6 +35,9 @@ func _init(host: String, port: int, options: Dictionary[String, Variant] = {}):
 	if tree:
 		tree.root.add_child(self)
 
+func _exit_tree() -> void:
+	close()
+
 func open(auto_reconnect: bool = false, reconect_attempts: int = 10) -> void:
 	if _state == WebSocketPeer.STATE_CLOSED:
 		_disconnected = false
@@ -49,8 +52,9 @@ func close() -> void:
 	_disconnected = true
 	_reconnect_count = 0
 
+	_log_message("WS disconnecting", 1)
+
 	if _socket && _state == WebSocketPeer.STATE_OPEN:
-		_log_message("WS disconnecting", 1)
 		_socket.close(1000, "Normal Closure")
 		_socket = null
 
