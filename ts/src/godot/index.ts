@@ -1,6 +1,7 @@
 import { ensureDir, exists } from '@std/fs';
 import type { APIDefinition } from '@o-json-rpc/o-json-rpc-ts';
 import { generateHttpClient } from './generators/httpClient.ts';
+import { generateWsClient } from './generators/wsClient.ts';
 import { apiSlug } from '../utils.ts';
 import { fetchCommon } from './utils.ts';
 
@@ -21,6 +22,7 @@ export async function generateGodotClient(
         }
 
         await generateHttpClient(api, apiPath, apiDefinition.procedures);
+        await generateWsClient(api, apiPath, apiDefinition.procedures);
     }
 
     const commonFile = await fetchCommon();

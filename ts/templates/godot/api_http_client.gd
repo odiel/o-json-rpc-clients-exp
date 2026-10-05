@@ -35,14 +35,12 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 	var payload = _build_request_payload(options)
 	var json_string = JSON.stringify(payload)
 
-	if option_log_level < 2:
-		print("[DEBUG] => Request payload to %s" % server_url)
-		print(json_string)
+	_log_message("Request payload to %s" % server_url, 0)
+	_log_message(json_string, 0)
 
 	var error = http_request.request(server_url, headers, HTTPClient.METHOD_POST, json_string)
 	if error != OK:
-		if option_log_level <= 3:
-			print("[ERROR] Request failed with error code %d" % error)
+		_log_message("Request failed with error code %d" % error, 3)
 
 		return ORPC_Common.Response.create_error("request_failure", "%d" % error)
 
@@ -55,13 +53,12 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 	_registered_procedures.clear()
 
 	if result != HTTPRequest.RESULT_SUCCESS:
-		if option_log_level <= 3:
-			print("[ERROR] Server response error %d" % error)
+		_log_message("Server response error %d" % error, 3)
+
 		return ORPC_Common.Response.create_error("request_failure", "%s" % result)
 
 	if response_code < 200 or response_code >= 300:
-		if option_log_level <= 3:
-			print("[ERROR] Server response not OK %d" % error)
+		_log_message("Server response not OK %d" % error, 3)
 
 		return ORPC_Common.Response.create_error("server_failure", "%s" % response_code)
 
@@ -70,14 +67,13 @@ func send(options: ORPC_Common.RequestOptions = null) -> ORPC_Common.Response:
 	var response_payload = json.parse(response_string)
 
 	if response_payload != OK:
-		if option_log_level <= 3:
-			print("[ERROR] Invalid server response content")
-			print(response_string)
+		_log_message("Invalid server response content", 3)
+		_log_message(response_string, 3)
+
 		return ORPC_Common.Response.create_error("invalid_response", "%s" % response_string)
 
-	if option_log_level < 2:
-		print("[DEBUG] <= Response payload")
-		print(response_string)
+	_log_message("<= Response payload", 0)
+	_log_message(response_string, 0)
 
 	return ORPC_Common.Response.create_success(json.get_data())
 
@@ -85,8 +81,9 @@ func add_procedure(p_name: String, id: String = "", input: Variant = null) -> OR
 	if id == "":
 		id = p_name
 	_registered_procedures.append(ORPC_Common.ProcedureRequest.new(p_name, id, input))
-	if option_log_level < 2:
-		print("[DEBUG] Procedure added to the stack; name: %s; id: %s" % [p_name, id])
+
+	_log_message("Procedure added to the stack; name: %s; id: %s" % [p_name, id], 2)
+
 	return self
 
 # replace: proceduresCode
@@ -111,3 +108,18 @@ func _build_request_payload(options: ORPC_Common.RequestOptions = null) -> Varia
 		payload["options"] = options_payload
 
 	return payload
+
+func _log_message(message: String, level: int) -> void:
+	var prefix = ""
+	match str(level):
+		"0":
+			prefix = "[DEBUG] "
+		"1":
+			prefix = "[INFO] "
+		"2":
+			prefix = "[WARN] "
+		"3":
+			prefix = "[ERROR] "
+
+	if option_log_level <= level:
+		print(prefix + message)
