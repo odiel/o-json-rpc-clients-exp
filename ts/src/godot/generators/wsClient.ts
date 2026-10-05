@@ -34,5 +34,5 @@ func ${snakeCase(name)}(${inputType}, id: String = "") -> ORPC_HTTP_Client_${api
     templateFile = templateFile.replaceAll('${apiSlug}', api_slug);
     templateFile = templateFile.replaceAll('${api}', api);
 
-    await Deno.writeTextFile(`${apiPath}/orpc_http_client.gd`, templateFile);
+    await Deno.writeTextFile(`${apiPath}/orpc_ws_client.gd`, templateFile);
 }
